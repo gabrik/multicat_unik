@@ -13,13 +13,28 @@ from bottle import *
 
 destinations=[]
 
-@get('/destination/<ip>')
-def test(ip):
-        print (destinations)
-        global destinations
-        destinations.append(ip)
-        return str('test %s' % ip)
+@get('/destination/add/<ip>')
+def add_destination(ip):
+        if ip not in destinations:
+            global destinations
+            destinations.append(ip)
+            return str('OK')
+        else:
+            return str('KO')
 
+@get('/destination/del/<ip>')
+def remove_destination(ip):
+    if ip in destinations:
+        global destinations
+        destinations.remove(ip)
+        return str('OK')
+    else:
+        return str('KO')
+
+
+@get('/destinations/')
+def remove_destination(ip):
+    return destinations
 
 def main():
     #if len(sys.argv)<3:
