@@ -63,7 +63,7 @@ def duplicate_pkt(in_pkt,ip_dst,mac_dst,conn):
 
     if protocol=='17' and dstPort==8001: 
         #14:58:d0:cb:58:34
-        dst_dup_mac=bytes([0x14, 0x58, 0xd0, 0xcb, 0x58, 0x34])#binascii.unhexlify(mac_dst)
+        dst_dup_mac=bytes([0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF])#binascii.unhexlify(mac_dst)
 
         eth_header_duplicate=struct.pack('!6s6s2s',dst_dup_mac,ethh[1],ethh[2])
 
