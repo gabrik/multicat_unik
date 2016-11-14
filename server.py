@@ -4,7 +4,7 @@ sys.path.append('./bin/')
 
 import socket as sck
 import threading
-import datetime
+import time
 from bottle import *
 
 #sudo pip3 install --install-option="--prefix=/home/gabriele/Scrivania/multicat_unik" --ignore-installed bottle
@@ -33,7 +33,7 @@ def remove_destination(ip):
 
 
 @get('/destinations/')
-def remove_destination(ip):
+def remove_destination():
     return destinations
 
 def main():
@@ -65,7 +65,7 @@ def main():
 
         for d in destinations:
             if inet_utils.duplicate_pkt(raw_buffer,d,'FFFFFFFFFFFF',sock) == None:
-                print ('data sent ' + datetime.datetime.now().time().isoformat())
+                print ('data sent %f' % time.time())
             #else:
             #   print ('error')
             #sock.sendall(data.encode())
